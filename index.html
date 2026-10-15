@@ -1,57 +1,369 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Heldeen.github.io by heldeen</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heath Eldeen</title>
+  <meta name="description" content="Heath Eldeen (@heldeen) — Personal Site">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Heath Eldeen">
+  <meta property="og:description" content="Personal site of Heath Eldeen (@heldeen)">
+  <meta property="og:url" content="https://heldeen.github.io">
 
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/heldeen">View On GitHub</a></li>
-        </nav>
-      </div><!-- end header -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <div class="wrapper">
+  <style>
+    :root {
+      --bg-color: #fafafa;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      --circle-stroke: #111827;
+      --circle-fill: rgba(0, 0, 0, 0.02);
+      --btn-bg: #111827;
+      --btn-text: #ffffff;
+      --btn-hover-bg: #1f2937;
+      --btn-border: #111827;
+      --glow-color: rgba(0, 0, 0, 0.04);
+      --toggle-bg: #f3f4f6;
+      --toggle-border: #e5e7eb;
+      --toggle-icon: #4b5563;
+      --ring-hover-shadow: rgba(0, 0, 0, 0.08);
+    }
 
-      <section>
-        <div id="title">
-          <h1>Heldeen.github.io</h1>
-          <p>tech blog</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/heldeen">heldeen</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+    [data-theme="dark"] {
+      --bg-color: #0d1117;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border-color: #30363d;
+      --circle-stroke: #f0f6fc;
+      --circle-fill: rgba(255, 255, 255, 0.03);
+      --btn-bg: #21262d;
+      --btn-text: #f0f6fc;
+      --btn-hover-bg: #30363d;
+      --btn-border: #30363d;
+      --glow-color: rgba(255, 255, 255, 0.04);
+      --toggle-bg: #21262d;
+      --toggle-border: #30363d;
+      --toggle-icon: #c9d1d9;
+      --ring-hover-shadow: rgba(255, 255, 255, 0.1);
+    }
 
-        <h3>
-<a name="ujug-talk-august-2015" class="anchor" href="#ujug-talk-august-2015"><span class="octicon octicon-link"></span></a>Ujug Talk August 2015 - Dropwizard.io</h3>
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg-color: #0d1117;
+        --text-main: #f0f6fc;
+        --text-muted: #8b949e;
+        --border-color: #30363d;
+        --circle-stroke: #f0f6fc;
+        --circle-fill: rgba(255, 255, 255, 0.03);
+        --btn-bg: #21262d;
+        --btn-text: #f0f6fc;
+        --btn-hover-bg: #30363d;
+        --btn-border: #30363d;
+        --glow-color: rgba(255, 255, 255, 0.04);
+        --toggle-bg: #21262d;
+        --toggle-border: #30363d;
+        --toggle-icon: #c9d1d9;
+        --ring-hover-shadow: rgba(255, 255, 255, 0.1);
+      }
+    }
 
-<p>I gave a talk at <a href="http://ujug.org">UJUG</a> on <a href="http://dropwizard.io">Dropwizard.io</a>. Here are the <a href="https://goo.gl/XEWnBe">slides</a> and the repository with the <a href="https://github.com/heldeen/todos-ujug-demo">code</a>.</p>
-      </section>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      <section>
-        <div id="cf-signal-resource-bundle">
-          <h1>Dropwizard cf-signal-resource-bundle</h1>
-          <p>I created a Dropwizard bundle to signal the AWS AutoScalingGroup via the AWS CloudFormation SignalResource API when running a rolling deploy via AWS CloudFormation.
-             Take a look if that seems useful to you. <a href="https://github.com/heldeen/cf-signal-resource-bundle">cf-signal-resource-bundle repository</a>
-          </p>
-        </div>
-      </section>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      padding: 24px;
+      position: relative;
+    }
 
+    /* Ambient background gradient effect */
+    .ambient-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: var(--toggle-bg);
+      border: 1px solid var(--toggle-border);
+      color: var(--toggle-icon);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+    }
+
+    .theme-toggle-btn:hover {
+      transform: scale(1.08);
+      color: var(--text-main);
+    }
+
+    .theme-toggle-btn:active {
+      transform: scale(0.96);
+    }
+
+    .theme-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+    }
+
+    /* Main Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 440px;
+      width: 100%;
+    }
+
+    /* Initials Graphic */
+    .monogram-container {
+      position: relative;
+      margin-bottom: 24px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .monogram-svg {
+      width: 124px;
+      height: 124px;
+      display: block;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    }
+
+    .monogram-container:hover .monogram-svg {
+      transform: scale(1.05);
+      filter: drop-shadow(0 6px 16px var(--ring-hover-shadow));
+    }
+
+    .circle-ring {
+      stroke: var(--circle-stroke);
+      fill: var(--circle-fill);
+      stroke-width: 2.75;
+      transition: stroke 0.25s ease, fill 0.25s ease;
+    }
+
+    .monogram-text {
+      fill: var(--circle-stroke);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      font-size: 54px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-anchor: middle;
+      dominant-baseline: central;
+      transition: fill 0.25s ease;
+      user-select: none;
+    }
+
+    /* Title */
+    .name {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+      color: var(--text-main);
+    }
+
+    /* Link Button */
+    .links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: 1px solid var(--btn-border);
+      padding: 10px 22px;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .github-link:hover {
+      background: var(--btn-hover-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+    }
+
+    .github-link:active {
+      transform: translateY(0);
+    }
+
+    .github-icon {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    .external-arrow {
+      width: 14px;
+      height: 14px;
+      opacity: 0.75;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .github-link:hover .external-arrow {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+
+    /* Footer */
+    footer {
+      position: absolute;
+      bottom: 24px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+    <!-- Sun icon (shown in dark mode to switch to light) -->
+    <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <!-- Moon icon (shown in light mode to switch to dark) -->
+    <svg id="moonIcon" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <main class="container">
+    <div class="monogram-container">
+      <svg class="monogram-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" aria-label="Heath Eldeen Initials HE" role="img">
+        <circle class="circle-ring" cx="80" cy="80" r="74" />
+        <text class="monogram-text" x="80" y="82">HE</text>
+      </svg>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+
+    <h1 class="name">Heath Eldeen</h1>
+
+    <div class="links">
+      <a class="github-link" href="https://github.com/heldeen" target="_blank" rel="noopener noreferrer" aria-label="Heath Eldeen on GitHub">
+        <svg class="github-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub</span>
+        <svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Heath Eldeen
+  </footer>
+
+  <script>
+    // Update copyright year dynamically
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle handling
+    const toggleBtn = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+
+    function getActiveTheme() {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+        toggleBtn.setAttribute('title', 'Switch to light mode');
+        toggleBtn.setAttribute('aria-label', 'Switch to light mode');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+        toggleBtn.setAttribute('title', 'Switch to dark mode');
+        toggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+      }
+    }
+
+    // Apply theme immediately
+    let currentTheme = getActiveTheme();
+    applyTheme(currentTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', currentTheme);
+      applyTheme(currentTheme);
+    });
+
+    // Auto update if OS preference changes and user has not set a preference override
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        currentTheme = e.matches ? 'dark' : 'light';
+        applyTheme(currentTheme);
+      }
+    });
+  </script>
+</body>
 </html>
